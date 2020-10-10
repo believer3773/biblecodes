@@ -12,7 +12,7 @@ http://[ip of server]:8080/<br>
 <br>
 <br>
 Command line search engine:<br>
-	go run suffix.go bible.txt Jesus<br> | less -R <br>
+	go run suffix.go bible.txt Jesus | less -R <br>
 <br>
 <br>
 <br>
