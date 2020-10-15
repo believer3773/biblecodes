@@ -1104,16 +1104,16 @@ func main() {
 		GematriaEvil:     nil,
 	}
 
-	HTML := "html"
+	DOCS := "docs"
 
-	err := os.MkdirAll(HTML, 0755)
+	err := os.MkdirAll(DOCS, 0755)
 	if err != nil {
-		fmt.Println("error creating" + HTML + "directory")
+		fmt.Println("error creating" + DOCS + "directory")
 		return
 	}
 
 	/////////////////////////////////////////////////////
-	jesushebrewfd, err := os.OpenFile(HTML+"/jesushebrew.html", os.O_CREATE|os.O_RDWR, 0755)
+	jesushebrewfd, err := os.OpenFile(DOCS+"/jesushebrew.html", os.O_CREATE|os.O_RDWR, 0755)
 	if err != nil {
 		fmt.Println("error opening jesushebrew.html")
 		return
@@ -1130,7 +1130,7 @@ func main() {
 
 	/////////////////////////////////////////////////////
 
-	jesusgreekfd, err := os.OpenFile(HTML+"/jesusgreek.html", os.O_CREATE|os.O_RDWR, 0755)
+	jesusgreekfd, err := os.OpenFile(DOCS+"/jesusgreek.html", os.O_CREATE|os.O_RDWR, 0755)
 	if err != nil {
 		fmt.Println("error opening jesusgreek.html")
 		return
@@ -1147,7 +1147,7 @@ func main() {
 
 	/////////////////////////////////////////////////////
 
-	awesomemath0fd, err := os.OpenFile(HTML+"/awesomemath0.html", os.O_CREATE|os.O_RDWR, 0755)
+	awesomemath0fd, err := os.OpenFile(DOCS+"/awesomemath0.html", os.O_CREATE|os.O_RDWR, 0755)
 	if err != nil {
 		fmt.Println("error opening jesusgreek.html")
 		return
@@ -1166,7 +1166,7 @@ func main() {
 
 	/////////////////////////////////////////////////////
 
-	awesomemath1fd, err := os.OpenFile(HTML+"/awesomemath1.html", os.O_CREATE|os.O_RDWR, 0755)
+	awesomemath1fd, err := os.OpenFile(DOCS+"/awesomemath1.html", os.O_CREATE|os.O_RDWR, 0755)
 	if err != nil {
 		fmt.Println("error opening awesomemath1.html")
 		return
@@ -1246,7 +1246,7 @@ func main() {
 
 	/////////////////////////////////////////////////////
 
-	awesomemath2fd, err := os.OpenFile(HTML+"/awesomemath2.html", os.O_CREATE|os.O_RDWR, 0755)
+	awesomemath2fd, err := os.OpenFile(DOCS+"/awesomemath2.html", os.O_CREATE|os.O_RDWR, 0755)
 	if err != nil {
 		fmt.Println("error opening awesomemath2.html")
 		return
@@ -1272,7 +1272,7 @@ func main() {
 
 	/////////////////////////////////////////////////////
 
-	gematriafd, err := os.OpenFile(HTML+"/gematria.html", os.O_CREATE|os.O_RDWR, 0755)
+	gematriafd, err := os.OpenFile(DOCS+"/gematria.html", os.O_CREATE|os.O_RDWR, 0755)
 	if err != nil {
 		fmt.Println("error opening gematria.html")
 		return
@@ -1287,7 +1287,7 @@ func main() {
 
 	/////////////////////////////////////////////////////
 
-	referencesfd, err := os.OpenFile(HTML+"/refs.html", os.O_CREATE|os.O_RDWR, 0755)
+	referencesfd, err := os.OpenFile(DOCS+"/refs.html", os.O_CREATE|os.O_RDWR, 0755)
 	if err != nil {
 		fmt.Println("error opening references.html")
 		return
@@ -1300,7 +1300,7 @@ func main() {
 
 	/////////////////////////////////////////////////////
 
-	indexfd, err := os.OpenFile(HTML+"/index.html", os.O_CREATE|os.O_RDWR, 0755)
+	indexfd, err := os.OpenFile(DOCS+"/index.html", os.O_CREATE|os.O_RDWR, 0755)
 	if err != nil {
 		fmt.Println("error opening index.html")
 		return
@@ -1313,7 +1313,7 @@ func main() {
 
 	/////////////////////////////////////////////////////
 
-	notesfd, err := os.OpenFile(HTML+"/notes.html", os.O_CREATE|os.O_RDWR, 0755)
+	notesfd, err := os.OpenFile(DOCS+"/notes.html", os.O_CREATE|os.O_RDWR, 0755)
 	if err != nil {
 		fmt.Println("error opening notes.html")
 		return
