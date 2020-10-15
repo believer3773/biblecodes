@@ -15,7 +15,7 @@ package main
 import (
 	"fmt"
 	"html/template"
-	"io/ioutil"
+//	"io/ioutil"
 	"math"
 	"math/big"
 	"net/http"
@@ -967,6 +967,69 @@ func sendEarlyHtml(w http.ResponseWriter) {
 
 }
 
+func sendEarlyHtml_fd(w *os.File) {
+	w.Write([]byte("<!DOCTYPE html>\n"))
+	w.Write([]byte("<html>\n"))
+	w.Write([]byte("<head>\n"))
+	w.Write([]byte("<meta charset=\"utf-8\"\">\n"))
+	w.Write([]byte("<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js\">\n"))
+	w.Write([]byte("</script>\n"))
+	w.Write([]byte("<style>\n"))
+
+	w.Write([]byte(".block {\ndisplay: block;\n width: 100%;\n border: none;\n background-color: #4CAF50;\n"))
+	w.Write([]byte("color: white;\npadding: 14px 28px;\nfont-size: 16px;\ncursor: pointer;\ntext-align: center;\n}"))
+	w.Write([]byte("block:hover {\nbackground-color: #ddd;color: black;\n"))
+	w.Write([]byte(" } \n\n"))
+
+	w.Write([]byte(".arrow {\n"))
+
+	w.Write([]byte("  border: solid black;\n"))
+	w.Write([]byte("  border-width: 0 3px 3px 0;\n"))
+	w.Write([]byte("  display: inline-block;\n"))
+	w.Write([]byte("  padding: 3px;\n"))
+	w.Write([]byte("}\n\n"))
+	w.Write([]byte(".right {\n"))
+	w.Write([]byte("  transform: rotate(-45deg);\n"))
+	w.Write([]byte("  -webkit-transform: rotate(-45deg);\n"))
+	w.Write([]byte("}\n\n"))
+	w.Write([]byte(".left {\n"))
+	w.Write([]byte("  transform: rotate(135deg);\n"))
+	w.Write([]byte("-webkit-transform: rotate(135deg);\n"))
+	w.Write([]byte("}\n\n"))
+	w.Write([]byte(".up {\n"))
+	w.Write([]byte("  transform: rotate(-135deg);\n"))
+	w.Write([]byte("  -webkit-transform: rotate(-135deg);\n"))
+	w.Write([]byte("}\n\n"))
+	w.Write([]byte(".down {\n"))
+	w.Write([]byte("  transform: rotate(45deg);\n"))
+	w.Write([]byte("  -webkit-transform: rotate(45deg);\n"))
+	w.Write([]byte("}\n\n"))
+
+	w.Write([]byte(".triangle {\n"))
+	w.Write([]byte("width: 74;\n"))
+	w.Write([]byte("height: 64;\n"))
+	w.Write([]byte("border-left:   725px solid transparent;\n"))
+	w.Write([]byte("border-right:  725px solid transparent;\n"))
+	w.Write([]byte("border-bottom: 725px solid #555;\n"))
+	w.Write([]byte("}\n"))
+	w.Write([]byte("</style>\n"))
+	w.Write([]byte("</head>\n"))
+	w.Write([]byte("<body>\n\n"))
+
+	/*
+		w.Write([]byte(".triangle {\n"))
+		w.Write([]byte("width: 74;\n"))
+		w.Write([]byte("height: 64;\n"))
+		w.Write([]byte("border: solid 750px;\n"))
+		w.Write([]byte("border-color: transparent transparent gray transparent; \n"))
+		w.Write([]byte("}\n"))
+		w.Write([]byte("</style>\n"))
+		w.Write([]byte("</head>\n"))
+		w.Write([]byte("<body>\n\n"))
+	*/
+
+}
+
 func main() {
 	//initialize a bunch of hash tables and string lists
 	init_hebrewlanguage()
@@ -1041,162 +1104,226 @@ func main() {
 		GematriaEvil:     nil,
 	}
 
+	HTML := "html"
+
+	err := os.MkdirAll(HTML, 0755)
+	if err != nil {
+		fmt.Println("error creating" + HTML + "directory")
+		return
+	}
+
+	/////////////////////////////////////////////////////
+	jesushebrewfd, err := os.OpenFile(HTML+"/jesushebrew.html", os.O_CREATE|os.O_RDWR, 0755)
+	if err != nil {
+		fmt.Println("error opening jesushebrew.html")
+		return
+	}
+
 	jesushebrewtmpl := template.Must(template.ParseFiles("jesushebrew.html"))
-	http.HandleFunc("/jesushebrew.html", func(w http.ResponseWriter, r *http.Request) {
-		data.PageTitle = "Jesus Christ in Hebrew"
-		sendEarlyHtml(w) //Write any early html like <head> and <style>
-		jesushebrewtmpl.Execute(w, data)
-	})
+	data.PageTitle = "Jesus Christ in Hebrew"
+	sendEarlyHtml_fd(jesushebrewfd) //Write any early html like <head> and <style>
+	err = jesushebrewtmpl.Execute(jesushebrewfd, data)
+	if err != nil {
+		fmt.Println("jesushebrew.html template failed.")
+		return
+	}
+
+	/////////////////////////////////////////////////////
+
+	jesusgreekfd, err := os.OpenFile(HTML+"/jesusgreek.html", os.O_CREATE|os.O_RDWR, 0755)
+	if err != nil {
+		fmt.Println("error opening jesusgreek.html")
+		return
+	}
 
 	jesusgreektmpl := template.Must(template.ParseFiles("jesusgreek.html"))
-	http.HandleFunc("/jesusgreek.html", func(w http.ResponseWriter, r *http.Request) {
-		data.PageTitle = "Jesus Christ in Greek"
-		sendEarlyHtml(w) //Write any early html like <head> and <style>
-		jesusgreektmpl.Execute(w, data)
-	})
+	data.PageTitle = "Jesus Christ in Greek"
+	sendEarlyHtml_fd(jesusgreekfd) //Write any early html like <head> and <style>
+	err = jesusgreektmpl.Execute(jesusgreekfd, data)
+	if err != nil {
+		fmt.Println("jesusgreek.html template failed.")
+		return
+	}
 
-	NOTES := "notes.html"
-	notestmpl := template.Must(template.ParseFiles(NOTES))
-	http.HandleFunc("/"+NOTES, func(w http.ResponseWriter, r *http.Request) {
-		data.PageTitle = "Unverified (by numbers.go) Bible Numerics Notes."
-		sendEarlyHtml(w) //Write any early html like <head> and <style>
-		notestmpl.Execute(w, data)
-	})
+	/////////////////////////////////////////////////////
 
-	awesomemathtmpl := template.Must(template.ParseFiles("awesomemath0.html"))
-	http.HandleFunc("/awesomemath0.html", func(w http.ResponseWriter, r *http.Request) {
-		sendEarlyHtml(w) //Write any early html like <head> and <style>
-		data.PageTitle = "Some of the Awesome Math in Genesis 1:1"
-		awesomehtmllist := doawesomemath(primes, semiprimes, inums)
-		data.AwesomeMath = awesomehtmllist
-		awesomemathtmpl.Execute(w, data)
-	})
+	awesomemath0fd, err := os.OpenFile(HTML+"/awesomemath0.html", os.O_CREATE|os.O_RDWR, 0755)
+	if err != nil {
+		fmt.Println("error opening jesusgreek.html")
+		return
+	}
+
+	awesomemath0tmpl := template.Must(template.ParseFiles("awesomemath0.html"))
+	data.PageTitle = "Some of the Awesome Math in Genesis 1:1"
+	awesomehtmllist := doawesomemath(primes, semiprimes, inums)
+	data.AwesomeMath = awesomehtmllist
+	sendEarlyHtml_fd(awesomemath0fd) //Write any early html like <head> and <style>
+	err = awesomemath0tmpl.Execute(awesomemath0fd, data)
+	if err != nil {
+		fmt.Println("jesusgreek.html template failed.")
+		return
+	}
+
+	/////////////////////////////////////////////////////
+
+	awesomemath1fd, err := os.OpenFile(HTML+"/awesomemath1.html", os.O_CREATE|os.O_RDWR, 0755)
+	if err != nil {
+		fmt.Println("error opening awesomemath1.html")
+		return
+	}
 
 	awesomemath1tmpl := template.Must(template.ParseFiles("awesomemath1.html"))
-	http.HandleFunc("/awesomemath1.html", func(w http.ResponseWriter, r *http.Request) {
-		sendEarlyHtml(w) //Write any early html like <head> and <style>
-		data.PageTitle = "Awesome Math with Jesus."
-		html := make([]AwesomeMathInformation, 0)
+	data.PageTitle = "Awesome Math with Jesus."
+	html := make([]AwesomeMathInformation, 0)
 
-		awesomechemistrylist := doawesomechemistrymath(inums)
-		for _, entry := range awesomechemistrylist {
-			html = append(html, AwesomeMathInformation{entry.Html})
-		}
+	awesomechemistrylist := doawesomechemistrymath(inums)
+	for _, entry := range awesomechemistrylist {
+		html = append(html, AwesomeMathInformation{entry.Html})
+	}
 
-		jesusthenazarene := "ιησους ο ναζωραιος"
-		jesusnazarenecnt := compute_verse_greek(jesusthenazarene)
-		satangreek := "ὁ καλούμενος Διάβολος καὶ Ὁ Σατανᾶς"
-		satangreekcnt := compute_verse_greek(satangreek)
+	jesusthenazarene := "ιησους ο ναζωραιος"
+	jesusnazarenecnt := compute_verse_greek(jesusthenazarene)
+	satangreek := "ὁ καλούμενος Διάβολος καὶ Ὁ Σατανᾶς"
+	satangreekcnt := compute_verse_greek(satangreek)
 
-		str := ""
-		const prec = 370 //this asks for more precision than needed
-		a, _ := new(big.Float).SetPrec(prec).SetString("1.0")
-		b, _ := new(big.Float).SetPrec(prec).SetString("754.0")
-		result := new(big.Float).SetPrec(prec).Quo(a, b) //Quo == Divide
+	str := ""
+	const prec = 370 //this asks for more precision than needed
+	a, _ := new(big.Float).SetPrec(prec).SetString("1.0")
+	b, _ := new(big.Float).SetPrec(prec).SetString("754.0")
+	result := new(big.Float).SetPrec(prec).Quo(a, b) //Quo == Divide
 
-		//compute the digital root or digital sum of the first 360 digits
-		floatstr := result.Text('g', 83)[2:]
-		//fmt.Println(str)
-		jesusgreek_circle_total := 0
-		for _, digit := range floatstr {
-			dig, _ := strconv.Atoi(string(digit))
-			jesusgreek_circle_total = jesusgreek_circle_total + dig
-		}
+	//compute the digital root or digital sum of the first 360 digits
+	floatstr := result.Text('g', 83)[2:]
+	//fmt.Println(str)
+	jesusgreek_circle_total := 0
+	for _, digit := range floatstr {
+		dig, _ := strconv.Atoi(string(digit))
+		jesusgreek_circle_total = jesusgreek_circle_total + dig
+	}
 
-		str = fmt.Sprintf("The letters in 'Jesus Christ' when written in Hebrew add up to 754.  The continuously repeating 83 digits found by dividing 1/754 adds up to: %d or the number of degrees in a circle.", jesusgreek_circle_total)
+	str = fmt.Sprintf("The letters in 'Jesus Christ' when written in Hebrew add up to 754.  The continuously repeating 83 digits found by dividing 1/754 adds up to: %d or the number of degrees in a circle.", jesusgreek_circle_total)
+	html = append(html, AwesomeMathInformation{str})
+
+	str = fmt.Sprintf("Observe that a CIRCLE with a circumference of 2368 has a diameter of 754, the ratio of which is %.2F or Pi.\n", float64(inums.jesusgreekcount)/float64(inums.jesushebrewcount))
+	html = append(html, AwesomeMathInformation{str})
+	str = fmt.Sprintf("The New Testament was originally written in Koine Greek.")
+	html = append(html, AwesomeMathInformation{str})
+	str = fmt.Sprintf("The word 'JESUS' when represented in Koine Greek add up to 888. JESUS is a perfect multiple of 37. E.g. 24x37=888")
+	html = append(html, AwesomeMathInformation{str})
+	str = fmt.Sprintf("The word 'CHRIST' when represented in Koine Greek add up to 1480.  1480 is also a perfect multiple of 37.  E.g. 40x37=1480")
+	html = append(html, AwesomeMathInformation{str})
+	str = fmt.Sprintf("8 + 8 + 8 + (1 + 4 + 8 + 0) = 37")
+	html = append(html, AwesomeMathInformation{str})
+
+	part1 := semiprimes[37-1] + semiprimes[73-1]
+	if inums.jesusgreekcount+part1 == 37*73 {
+		str = fmt.Sprintf("%d + (37th SemiPrime: %d + 73rd SemiPrime: %d) = (37x73) = %d.", inums.jesusgreekcount, semiprimes[37-1], semiprimes[73-1], 37*73)
 		html = append(html, AwesomeMathInformation{str})
+	}
 
-		str = fmt.Sprintf("Observe that a CIRCLE with a circumference of 2368 has a diameter of 754, the ratio of which is %.2F or Pi.\n", float64(inums.jesusgreekcount)/float64(inums.jesushebrewcount))
+	//subtract 1 from index on primes because it is zero based
+	part1 = inums.jesusgreekcount - (primes[37-1] + primes[73-1])
+	part2 := math.Pow(3, 7) - math.Pow(7, 3)
+	if part1 == int(part2) {
+		str = fmt.Sprintf("2368 - (37th prime: %d 73rd prime: %d) = 3^7 - 7^3 = %d. 1844 is a perfect multiple of 37.  E.g. 37x49=1844.", primes[37-1], primes[73-1], 1844)
 		html = append(html, AwesomeMathInformation{str})
-		str = fmt.Sprintf("The New Testament was originally written in Koine Greek.")
-		html = append(html, AwesomeMathInformation{str})
-		str = fmt.Sprintf("The word 'JESUS' when represented in Koine Greek add up to 888. JESUS is a perfect multiple of 37. E.g. 24x37=888")
-		html = append(html, AwesomeMathInformation{str})
-		str = fmt.Sprintf("The word 'CHRIST' when represented in Koine Greek add up to 1480.  1480 is also a perfect multiple of 37.  E.g. 40x37=1480")
-		html = append(html, AwesomeMathInformation{str})
-		str = fmt.Sprintf("8 + 8 + 8 + (1 + 4 + 8 + 0) = 37")
-		html = append(html, AwesomeMathInformation{str})
+		//fmt.Println("fact -", "3^7 - 7^3 == ", "2368 - ((37th Prime:", primes[37-1], ") + (73rd Prime:", primes[73-1], ")) == ", part2)
+	}
 
-		part1 := semiprimes[37-1] + semiprimes[73-1]
-		if inums.jesusgreekcount+part1 == 37*73 {
-			str = fmt.Sprintf("%d + (37th SemiPrime: %d + 73rd SemiPrime: %d) = (37x73) = %d.", inums.jesusgreekcount, semiprimes[37-1], semiprimes[73-1], 37*73)
-			html = append(html, AwesomeMathInformation{str})
-		}
+	str = fmt.Sprintf("'Jesus Of Nazareth The King Of The Jews' from John 19:19 in Greek is %s. Greek character count is %d. 2197=13x13x13", jesusthenazarene, jesusnazarenecnt)
+	html = append(html, AwesomeMathInformation{str})
+	str = fmt.Sprintf("'who is called the devil and Satan' from Rev 12:9 in Greek is '%s'.  Greek character count is %d.  2197=13x13x13", satangreek, satangreekcnt)
+	html = append(html, AwesomeMathInformation{str})
+	data.AwesomeMath = html
 
-		//subtract 1 from index on primes because it is zero based
-		part1 = inums.jesusgreekcount - (primes[37-1] + primes[73-1])
-		part2 := math.Pow(3, 7) - math.Pow(7, 3)
-		if part1 == int(part2) {
-			str = fmt.Sprintf("2368 - (37th prime: %d 73rd prime: %d) = 3^7 - 7^3 = %d. 1844 is a perfect multiple of 37.  E.g. 37x49=1844.", primes[37-1], primes[73-1], 1844)
-			html = append(html, AwesomeMathInformation{str})
-			//fmt.Println("fact -", "3^7 - 7^3 == ", "2368 - ((37th Prime:", primes[37-1], ") + (73rd Prime:", primes[73-1], ")) == ", part2)
-		}
+	sendEarlyHtml_fd(awesomemath1fd) //Write any early html like <head> and <style>
+	err = awesomemath1tmpl.Execute(awesomemath1fd, data)
+	if err != nil {
+		fmt.Println("awesomemath1.html template failed.")
+		return
+	}
 
-		str = fmt.Sprintf("'Jesus Of Nazareth The King Of The Jews' from John 19:19 in Greek is %s. Greek character count is %d. 2197=13x13x13", jesusthenazarene, jesusnazarenecnt)
-		html = append(html, AwesomeMathInformation{str})
-		str = fmt.Sprintf("'who is called the devil and Satan' from Rev 12:9 in Greek is '%s'.  Greek character count is %d.  2197=13x13x13", satangreek, satangreekcnt)
-		html = append(html, AwesomeMathInformation{str})
-		data.AwesomeMath = html
-		awesomemath1tmpl.Execute(w, data)
-	})
+
+	/////////////////////////////////////////////////////
+
+	awesomemath2fd, err := os.OpenFile(HTML+"/awesomemath2.html", os.O_CREATE|os.O_RDWR, 0755)
+	if err != nil {
+		fmt.Println("error opening awesomemath2.html")
+		return
+	}
 
 	awesomemath2tmpl := template.Must(template.ParseFiles("awesomemath2.html"))
-	http.HandleFunc("/awesomemath2.html", func(w http.ResponseWriter, r *http.Request) {
-		sendEarlyHtml(w) //Write any early html like <head> and <style>
-		data.PageTitle = "Awesome Math with Fibonacci, Pi, and the non-evil version of 666."
-		html := make([]AwesomeMathInformation, 0)
+	data.PageTitle = "Awesome Math with Fibonacci, Pi, and the non-evil version of 666."
+	sendEarlyHtml_fd(awesomemath2fd) //Write any early html like <head> and <style>
+	html = make([]AwesomeMathInformation, 0)
 
-		fiblist := Fibonacci()
-		pilist := ProofInThePi()
-		for _, fib := range fiblist {
-			html = append(html, fib)
-		}
+	fiblist := Fibonacci()
+	pilist := ProofInThePi()
+	for _, fib := range fiblist {
+		html = append(html, fib)
+	}
 
-		for _, pientry := range pilist {
-			html = append(html, pientry)
-		}
+	for _, pientry := range pilist {
+		html = append(html, pientry)
+	}
 
-		data.AwesomeMath = html
-		awesomemath2tmpl.Execute(w, data)
-	})
+	data.AwesomeMath = html
+	awesomemath2tmpl.Execute(awesomemath2fd, data)
+
+	/////////////////////////////////////////////////////
+
+	gematriafd, err := os.OpenFile(HTML+"/gematria.html", os.O_CREATE|os.O_RDWR, 0755)
+	if err != nil {
+		fmt.Println("error opening gematria.html")
+		return
+	}
 
 	gematriatmpl := template.Must(template.ParseFiles("gematria.html"))
-	http.HandleFunc("/gematria.html", func(w http.ResponseWriter, r *http.Request) {
-		sendEarlyHtml(w) //Write any early html like <head> and <style>
-		data.PageTitle = "English Gematria of Words - based on the Sumerian code"
-		data.GematriaJesus = english_gematria_jesus()
-		data.GematriaEvil = english_gematria_666()
-		gematriatmpl.Execute(w, data)
-	})
+	data.PageTitle = "English Gematria of Words - based on the Sumerian code"
+	sendEarlyHtml_fd(gematriafd) //Write any early html like <head> and <style>
+	data.GematriaJesus = english_gematria_jesus()
+	data.GematriaEvil  = english_gematria_666()
+	gematriatmpl.Execute(gematriafd, data)
 
-	referencestmpl := template.Must(template.ParseFiles("refs.html"))
-	http.HandleFunc("/refs.html", func(w http.ResponseWriter, r *http.Request) {
-		sendEarlyHtml(w) //Write any early html like <head> and <style>
-		data.PageTitle = "References:"
-		referencestmpl.Execute(w, data)
-	})
+	/////////////////////////////////////////////////////
 
-	http.HandleFunc("/numbers.go", func(w http.ResponseWriter, r *http.Request) {
-		b, _ := ioutil.ReadFile("numbers.go")
-		w.Write(b)
-	})
+	referencesfd, err := os.OpenFile(HTML+"/refs.html", os.O_CREATE|os.O_RDWR, 0755)
+	if err != nil {
+		fmt.Println("error opening references.html")
+		return
+	}
 
-	//the home page
-	indextmpl := template.Must(template.ParseFiles("index.html"))
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		sendEarlyHtml(w) //Write any early html like <head> and <style>
-		data.PageTitle = "A Survey of Biblical Numerics and Mathematical Monotheism"
-		indextmpl.Execute(w, data)
-	})
+	referencestmpl:= template.Must(template.ParseFiles("refs.html"))
+	data.PageTitle = "References:"
+	sendEarlyHtml_fd(referencesfd) //Write any early html like <head> and <style>
+	referencestmpl.Execute(referencesfd, data)
 
-	/*
-		YHWH := "יהוה"
-		YHWH_count := compute_verse_hebrew(YHWH, hom)
-		ELOHIM := "םיהלא"
-		ELOHIM_count := compute_verse_hebrew(ELOHIM, hom)
-		fmt.Println("YAHWEH ELOHIM in Hebrew='", YHWH, ELOHIM, "' Ordinal counts in Hebrew for both words are", YHWH_count, "and", ELOHIM_count)
-	*/
+	/////////////////////////////////////////////////////
 
-	http.ListenAndServe(":8080", nil)
+	indexfd, err := os.OpenFile(HTML+"/index.html", os.O_CREATE|os.O_RDWR, 0755)
+	if err != nil {
+		fmt.Println("error opening index.html")
+		return
+	}
+
+	indextmpl:= template.Must(template.ParseFiles("index.html"))
+	data.PageTitle = "A Quick Survey of Biblical Numerics and Mathematical Monotheism"
+	sendEarlyHtml_fd(indexfd) //Write any early html like <head> and <style>
+	indextmpl.Execute(indexfd, data)
+
+	/////////////////////////////////////////////////////
+
+	notesfd, err := os.OpenFile(HTML+"/notes.html", os.O_CREATE|os.O_RDWR, 0755)
+	if err != nil {
+		fmt.Println("error opening notes.html")
+		return
+	}
+
+	notestmpl:= template.Must(template.ParseFiles("notes.html"))
+	data.PageTitle = "Unverified (by numbers.go) Bible Numerics Notes."
+	sendEarlyHtml_fd(notesfd) //Write any early html like <head> and <style>
+	notestmpl.Execute(notesfd, data)
+
+	/////////////////////////////////////////////////////
 
 }

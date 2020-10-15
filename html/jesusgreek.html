@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+</script>
+<style>
+.block {
+display: block;
+ width: 100%;
+ border: none;
+ background-color: #4CAF50;
+color: white;
+padding: 14px 28px;
+font-size: 16px;
+cursor: pointer;
+text-align: center;
+}block:hover {
+background-color: #ddd;color: black;
+ } 
+
+.arrow {
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+}
+
+.right {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+.left {
+  transform: rotate(135deg);
+-webkit-transform: rotate(135deg);
+}
+
+.up {
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+}
+
+.down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+
+.triangle {
+width: 74;
+height: 64;
+border-left:   725px solid transparent;
+border-right:  725px solid transparent;
+border-bottom: 725px solid #555;
+}
+</style>
+</head>
+<body>
+
+<h1>Jesus Christ in Greek</h1>
+
+<br>
+<strong>Greek is the original language of the New Testament.</strong>
+<br>
+
+<div id=table1>
+<table class="center" border=2 style='font-family:"Courier New", Courier, monospace; font-size:200%'>
+	<th>English</th><th>Greek</th><th>Sum of Greek Characters</th>
+	<tr><td bgcolor=white style="color:#0f52ba"><strong>Jesus Christ</strong></td><td><b>Ιησούς Χριστός</b></td><td>2368</td></tr>
+</table>
+</div>
+<br>
+<br>
+
+<button class="block" id='slideme' onclick="toggleTable2">Show/Hide</button>
+
+<table class=hebrewtable id=table2 class="center" style="display:none" border=1 style='font-family:"Courier New", Courier, monospace; font-size:200%'>
+	<th>Greek Character</th><th>Integer Value</th>
+	
+	<tr><td>Α</td><td>1</td></tr>
+	
+	<tr><td>Β</td><td>2</td></tr>
+	
+	<tr><td>Γ</td><td>3</td></tr>
+	
+	<tr><td>Δ</td><td>4</td></tr>
+	
+	<tr><td>Ε</td><td>5</td></tr>
+	
+	<tr><td>Ζ</td><td>7</td></tr>
+	
+	<tr><td>Η</td><td>8</td></tr>
+	
+	<tr><td>Θ</td><td>9</td></tr>
+	
+	<tr><td>Ι</td><td>10</td></tr>
+	
+	<tr><td>Κ</td><td>20</td></tr>
+	
+	<tr><td>Λ</td><td>30</td></tr>
+	
+	<tr><td>Μ</td><td>40</td></tr>
+	
+	<tr><td>Ν</td><td>50</td></tr>
+	
+	<tr><td>Ξ</td><td>60</td></tr>
+	
+	<tr><td>Ο</td><td>70</td></tr>
+	
+	<tr><td>Π</td><td>80</td></tr>
+	
+	<tr><td>Ρ</td><td>100</td></tr>
+	
+	<tr><td>Σ</td><td>200</td></tr>
+	
+	<tr><td>Τ</td><td>300</td></tr>
+	
+	<tr><td>Υ</td><td>400</td></tr>
+	
+	<tr><td>Φ</td><td>500</td></tr>
+	
+	<tr><td>Χ</td><td>600</td></tr>
+	
+	<tr><td>Ψ</td><td>700</td></tr>
+	
+	<tr><td>Ω</td><td>800</td></tr>
+	
+	<tr><td>ά</td><td>1</td></tr>
+	
+	<tr><td>α</td><td>1</td></tr>
+	
+	<tr><td>β</td><td>2</td></tr>
+	
+	<tr><td>γ</td><td>3</td></tr>
+	
+	<tr><td>δ</td><td>4</td></tr>
+	
+	<tr><td>ε</td><td>5</td></tr>
+	
+	<tr><td>ζ</td><td>7</td></tr>
+	
+	<tr><td>η</td><td>8</td></tr>
+	
+	<tr><td>θ</td><td>9</td></tr>
+	
+	<tr><td>ι</td><td>10</td></tr>
+	
+	<tr><td>κ</td><td>20</td></tr>
+	
+	<tr><td>λ</td><td>30</td></tr>
+	
+	<tr><td>μ</td><td>40</td></tr>
+	
+	<tr><td>ν</td><td>50</td></tr>
+	
+	<tr><td>ξ</td><td>60</td></tr>
+	
+	<tr><td>ο</td><td>70</td></tr>
+	
+	<tr><td>π</td><td>80</td></tr>
+	
+	<tr><td>ρ</td><td>100</td></tr>
+	
+	<tr><td>ς</td><td>200</td></tr>
+	
+	<tr><td>σ</td><td>200</td></tr>
+	
+	<tr><td>τ</td><td>300</td></tr>
+	
+	<tr><td>υ</td><td>400</td></tr>
+	
+	<tr><td>φ</td><td>500</td></tr>
+	
+	<tr><td>χ</td><td>600</td></tr>
+	
+	<tr><td>ψ</td><td>700</td></tr>
+	
+	<tr><td>ω</td><td>800</td></tr>
+	
+	<tr><td>ό</td><td>70</td></tr>
+	
+	<tr><td>ύ</td><td>400</td></tr>
+	
+	<tr><td>ὁ</td><td>70</td></tr>
+	
+	<tr><td>Ὁ</td><td>70</td></tr>
+	
+	<tr><td>ὶ</td><td>10</td></tr>
+	
+	<tr><td>ᾶ</td><td>1</td></tr>
+	
+</table>
+
+<br>
+<button class="block" onclick="window.location.href='awesomemath0.html';">
+Next
+</button>
+<br>
+
+<script>
+
+$('#slideme').click(function(){
+       $('.hebrewtable').slideToggle('slow');
+});
+</script>
+
+
+<script type="text/javascript">
+
+function toggleTable2() {
+	var x = document.getElementById("table2");
+        if (x.style.display === "none") {
+	    x.style.display = "block";
+	} else {
+            x.style.display = "none";
+        }
+}
+</script>
+
+</body>
+</html>

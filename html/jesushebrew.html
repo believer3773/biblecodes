@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+</script>
+<style>
+.block {
+display: block;
+ width: 100%;
+ border: none;
+ background-color: #4CAF50;
+color: white;
+padding: 14px 28px;
+font-size: 16px;
+cursor: pointer;
+text-align: center;
+}block:hover {
+background-color: #ddd;color: black;
+ } 
+
+.arrow {
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+}
+
+.right {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+.left {
+  transform: rotate(135deg);
+-webkit-transform: rotate(135deg);
+}
+
+.up {
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+}
+
+.down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+
+.triangle {
+width: 74;
+height: 64;
+border-left:   725px solid transparent;
+border-right:  725px solid transparent;
+border-bottom: 725px solid #555;
+}
+</style>
+</head>
+<body>
+
+<h1>Jesus Christ in Hebrew</h1>
+
+<br>
+<strong>Hebrew is the language of the Old Testament.</strong>
+<br>
+
+<div id=table1>
+<table class="center" border=2 style='font-family:"Courier New", Courier, monospace; font-size:200%'>
+	<th>English</th><th>Hebrew</th><th>Sum of Hebrew Characters</th>
+	<tr><td bgcolor=white style="color:#0f52ba"><strong>Jesus Christ</strong></td><td><b>חישםה עשוהי</b></td><td>754</td></tr>
+</table>
+</div>
+<br>
+<br>
+
+<button id='slideme' class="block" onclick="toggleTable2">Show/Hide</button>
+
+<table class=hebrewtable id=table2 class="center" style="display:none" border=1 style='font-family:"Courier New", Courier, monospace; font-size:200%'>
+	<th>Hebrew Character</th><th>Integer Value</th>
+	
+	<tr><td>א</td><td>1</td></tr>
+	
+	<tr><td>ב</td><td>2</td></tr>
+	
+	<tr><td>ג</td><td>3</td></tr>
+	
+	<tr><td>ד</td><td>4</td></tr>
+	
+	<tr><td>ה</td><td>5</td></tr>
+	
+	<tr><td>ו</td><td>6</td></tr>
+	
+	<tr><td>ז</td><td>7</td></tr>
+	
+	<tr><td>ח</td><td>8</td></tr>
+	
+	<tr><td>ט</td><td>9</td></tr>
+	
+	<tr><td>י</td><td>10</td></tr>
+	
+	<tr><td>כ</td><td>20</td></tr>
+	
+	<tr><td>ל</td><td>30</td></tr>
+	
+	<tr><td>ם</td><td>40</td></tr>
+	
+	<tr><td>מ</td><td>40</td></tr>
+	
+	<tr><td>ן</td><td>50</td></tr>
+	
+	<tr><td>נ</td><td>50</td></tr>
+	
+	<tr><td>ס</td><td>60</td></tr>
+	
+	<tr><td>ע</td><td>70</td></tr>
+	
+	<tr><td>פ</td><td>80</td></tr>
+	
+	<tr><td>ץ</td><td>90</td></tr>
+	
+	<tr><td>צ</td><td>90</td></tr>
+	
+	<tr><td>ק</td><td>100</td></tr>
+	
+	<tr><td>ר</td><td>200</td></tr>
+	
+	<tr><td>ש</td><td>300</td></tr>
+	
+	<tr><td>ת</td><td>400</td></tr>
+	
+</table>
+
+<br>
+<button class="block" onclick="window.location.href='jesusgreek.html';">
+Next
+</button>
+<br>
+
+
+<script>
+
+$('#slideme').click(function(){
+       $('.hebrewtable').slideToggle('slow');
+});
+</script>
+
+
+<script type="text/javascript">
+
+function toggleTable2() {
+	var x = document.getElementById("table2");
+        if (x.style.display === "none") {
+	    x.style.display = "block";
+	} else {
+            x.style.display = "none";
+        }
+}
+</script>
+
+</body>
+</html>
