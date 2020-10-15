@@ -7,8 +7,8 @@ suffix.go  - a program for searching the bible and other texts using suffix arra
 Usage:<br>
 go run biblecodes.go <br> 
 
-open a browser and go to:<br>
-http://[ip of server]:8080/<br>
+Look in html/ folder for index.html.  Open in a browser.<br>
+
 <br>
 <br>
 Command line search engine:<br>
