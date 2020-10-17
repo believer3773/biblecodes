@@ -1320,7 +1320,7 @@ func main() {
 	}
 
 	notestmpl:= template.Must(template.ParseFiles("notes.html"))
-	data.PageTitle = "Unverified (by numbers.go) Bible Numerics Notes."
+	data.PageTitle = "Unverified (by biblecodes.go) Bible Numerics Notes."
 	sendEarlyHtml_fd(notesfd) //Write any early html like <head> and <style>
 	notestmpl.Execute(notesfd, data)
 
