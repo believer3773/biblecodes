@@ -1,0 +1,31 @@
+<h1>{{.PageTitle}}</h1>
+
+<!--<div class="ruler"></div>
+<p>Right arrow: <i class="arrow right"></i></p>
+<p>Left arrow: <i class="arrow left"></i></p>
+<p>Up arrow: <i class="arrow up"></i></p>
+<p>Down arrow: <i class="arrow down"></i></p>
+<div class="triangle"></div>
+-->
+
+<br>
+
+<table class=awesomemath id=table1 class="center" border=1 style='font-family:"Courier New", Courier, monospace; font-size:200%'>
+        <th>Bible Math Facts</th>
+        {{range .AwesomeMath}}
+        <tr><td>{{.Html}}</td></tr>
+        {{end}}
+</table>
+
+
+<br>
+<button class="block" onclick="window.location.href='awesomemath1.html';">
+Next Page 
+</button>
+<br>
+
+
+
+
+</body>
+</html>

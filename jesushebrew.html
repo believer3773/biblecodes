@@ -1,0 +1,53 @@
+<h1>{{.PageTitle}}</h1>
+
+<br>
+<strong>Hebrew is the language of the Old Testament.</strong>
+<br>
+
+<div id=table1>
+<table class="center" border=2 style='font-family:"Courier New", Courier, monospace; font-size:200%'>
+	<th>English</th><th>Hebrew</th><th>Sum of Hebrew Characters</th>
+	<tr><td bgcolor=white style="color:#0f52ba"><strong>Jesus Christ</strong></td><td><b>{{.JesusHebrew}}</b></td><td>{{.JesusHebrewCount}}</td></tr>
+</table>
+</div>
+<br>
+<br>
+
+<button id='slideme' class="block" onclick="toggleTable2">Show/Hide</button>
+
+<table class=hebrewtable id=table2 class="center" style="display:none" border=1 style='font-family:"Courier New", Courier, monospace; font-size:200%'>
+	<th>Hebrew Character</th><th>Integer Value</th>
+	{{range .HebrewInfo}}
+	<tr><td>{{.Character}}</td><td>{{.Integer}}</td></tr>
+	{{end}}
+</table>
+
+<br>
+<button class="block" onclick="window.location.href='jesusgreek.html';">
+Next
+</button>
+<br>
+
+
+<script>
+// Monitors the buttons for click events and slides <img> in response.
+$('#slideme').click(function(){
+       $('.hebrewtable').slideToggle('slow');
+});
+</script>
+
+
+<script type="text/javascript">
+
+function toggleTable2() {
+	var x = document.getElementById("table2");
+        if (x.style.display === "none") {
+	    x.style.display = "block";
+	} else {
+            x.style.display = "none";
+        }
+}
+</script>
+
+</body>
+</html>

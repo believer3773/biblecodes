@@ -1,0 +1,21 @@
+<h1>{{.PageTitle}}</h1>
+
+<br>
+<br>
+
+<table class=awesomemath id=table1 class="center" border=1 style='font-family:"Courier New", Courier, monospace; font-size:200%'>
+        <th>Bible Math Facts</th>
+        {{range .AwesomeMath}}
+        <tr><td>{{.Html}}</td></tr>
+        {{end}}
+</table>
+
+<br>
+<button class="block" onclick="window.location.href='awesomemath2.html';">
+Next 
+</button>
+<br>
+
+
+</body>
+</html>

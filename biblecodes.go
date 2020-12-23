@@ -15,7 +15,7 @@ package main
 import (
 	"fmt"
 	"html/template"
-//	"io/ioutil"
+	//	"io/ioutil"
 	"math"
 	"math/big"
 	"net/http"
@@ -1243,7 +1243,6 @@ func main() {
 		return
 	}
 
-
 	/////////////////////////////////////////////////////
 
 	awesomemath2fd, err := os.OpenFile(DOCS+"/awesomemath2.html", os.O_CREATE|os.O_RDWR, 0755)
@@ -1282,7 +1281,7 @@ func main() {
 	data.PageTitle = "English Gematria of Words - based on the Sumerian code"
 	sendEarlyHtml_fd(gematriafd) //Write any early html like <head> and <style>
 	data.GematriaJesus = english_gematria_jesus()
-	data.GematriaEvil  = english_gematria_666()
+	data.GematriaEvil = english_gematria_666()
 	gematriatmpl.Execute(gematriafd, data)
 
 	/////////////////////////////////////////////////////
@@ -1293,7 +1292,7 @@ func main() {
 		return
 	}
 
-	referencestmpl:= template.Must(template.ParseFiles("refs.html"))
+	referencestmpl := template.Must(template.ParseFiles("refs.html"))
 	data.PageTitle = "References:"
 	sendEarlyHtml_fd(referencesfd) //Write any early html like <head> and <style>
 	referencestmpl.Execute(referencesfd, data)
@@ -1306,7 +1305,7 @@ func main() {
 		return
 	}
 
-	indextmpl:= template.Must(template.ParseFiles("index.html"))
+	indextmpl := template.Must(template.ParseFiles("index.html"))
 	data.PageTitle = "A Quick Survey of Biblical Numerics and Mathematical Monotheism"
 	sendEarlyHtml_fd(indexfd) //Write any early html like <head> and <style>
 	indextmpl.Execute(indexfd, data)
@@ -1319,7 +1318,7 @@ func main() {
 		return
 	}
 
-	notestmpl:= template.Must(template.ParseFiles("notes.html"))
+	notestmpl := template.Must(template.ParseFiles("notes.html"))
 	data.PageTitle = "Unverified (by biblecodes.go) Bible Numerics Notes."
 	sendEarlyHtml_fd(notesfd) //Write any early html like <head> and <style>
 	notestmpl.Execute(notesfd, data)
