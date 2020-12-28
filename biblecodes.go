@@ -708,7 +708,7 @@ func doawesomemath(primes, semiprimes []int, inums importantnumbers) []AwesomeMa
 		str = fmt.Sprintf("The prime factors of 2701 are 37 and 73, in other words, 37x73 is equal to 2701.")
 		html = append(html, AwesomeMathInformation{str})
 
-		str := fmt.Sprintf("Chokmah (חכמה) is the Hebrew Greek Word for wisdom.  Adding the hebrew ordinal values of each Hebrew character in 'חכמה' equals %d.", hom["ח"]+hom["כ"]+hom["מ"]+hom["ה"])
+		str := fmt.Sprintf("Chokmah (חכמה) is the Hebrew Greek Word for wisdom.  Adding the Hebrew ordinal values of each Hebrew character in 'חכמה' equals %d.", hom["ח"]+hom["כ"]+hom["מ"]+hom["ה"])
 		html = append(html, AwesomeMathInformation{str})
 
 		str = fmt.Sprintf("By taking each character for the Hebrew word for wisdom which is 'הםכח' and add up the numerical value for each character you get %d.", hm["ח"]+hm["כ"]+hm["מ"]+hm["ה"])
