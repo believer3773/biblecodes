@@ -975,6 +975,7 @@ func sendEarlyHtml_fd(w *os.File) {
 	w.Write([]byte("<!DOCTYPE html>\n"))
 	w.Write([]byte("<html>\n"))
 	w.Write([]byte("<head>\n"))
+	w.Write([]byte("<!-- Global site tag (gtag.js) - Google Analytics -->\n<script async src=\"https://www.googletagmanager.com/gtag/js?id=G-9BHPJN08TF\"></script>\n<script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-9BHPJN08TF'); </script>\n"))
 	w.Write([]byte("<meta charset=\"utf-8\"\">\n"))
 	w.Write([]byte("<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js\">\n"))
 	w.Write([]byte("</script>\n"))
