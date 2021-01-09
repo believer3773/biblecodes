@@ -883,6 +883,8 @@ type BibleData struct {
 	HebrewInfo       []LanguageInformation
 	JesusGreek       string
 	JesusGreekCount  int
+	JesusGreek1      string
+	JesusGreekCount1 int
 	GreekInfo        []LanguageInformation
 	AwesomeMath      []AwesomeMathInformation
 	AwesomeChemistry []AwesomeChemistryInformation
@@ -1074,6 +1076,9 @@ func main() {
 	jesusgreek := "Ιησούς Χριστός" //Jesus Christ in Greek
 	jesusgreekcount := compute_verse_greek(jesusgreek)
 
+	jesusgreek1 := "Ιησούς" //Jesus in Greek
+	jesusgreekcount1 := compute_verse_greek(jesusgreek1)
+
 	//satanhebrew := "שטן" //Satan in Hebrew = 359, 359th day of year is Christmas
 	//satanhebrewcount := compute_verse_hebrew(satanhebrew, hm)
 
@@ -1103,6 +1108,8 @@ func main() {
 		HebrewInfo:       hi,
 		JesusGreek:       jesusgreek,
 		JesusGreekCount:  jesusgreekcount,
+		JesusGreek1:      jesusgreek1,
+		JesusGreekCount1: jesusgreekcount1,
 		GreekInfo:        gi,
 		AwesomeMath:      nil,
 		AwesomeChemistry: nil,
@@ -1153,9 +1160,26 @@ func main() {
 
 	/////////////////////////////////////////////////////
 
+	jesusenglishfd, err := os.OpenFile(DOCS+"/jesusenglish.html", os.O_CREATE|os.O_RDWR, 0755)
+	if err != nil {
+		fmt.Println("error opening jesusenglish.html")
+		return
+	}
+
+	jesusenglishtmpl := template.Must(template.ParseFiles("jesusenglish.html"))
+	data.PageTitle = "Jesus in English"
+	sendEarlyHtml_fd(jesusenglishfd) //Write any early html like <head> and <style>
+	err = jesusenglishtmpl.Execute(jesusenglishfd, data)
+	if err != nil {
+		fmt.Println("jesusenglish.html template failed.")
+		return
+	}
+
+	/////////////////////////////////////////////////////
+
 	awesomemath0fd, err := os.OpenFile(DOCS+"/awesomemath0.html", os.O_CREATE|os.O_RDWR, 0755)
 	if err != nil {
-		fmt.Println("error opening jesusgreek.html")
+		fmt.Println("error opening awesomemath0.html")
 		return
 	}
 
