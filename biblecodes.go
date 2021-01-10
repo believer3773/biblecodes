@@ -1348,7 +1348,7 @@ func main() {
 
 	indextmpl := template.Must(template.ParseFiles("index.html"))
 	//data.PageTitle = "A Survey of Biblical Numerics and Mathematical Monotheism (Bible Codes)"
-	data.PageTitle = "scripturecodes.com provides free access to Bible codes."
+	data.PageTitle = "scripturecodes.com provides a summarized view of some recent Bible codes."
 	sendEarlyHtml_fd(indexfd) //Write any early html like <head> and <style>
 	indextmpl.Execute(indexfd, data)
 
