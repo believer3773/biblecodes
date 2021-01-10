@@ -989,8 +989,19 @@ func sendEarlyHtml_fd(w *os.File) {
 	w.Write([]byte("block:hover {\nbackground-color: #ddd;color: black;\n"))
 	w.Write([]byte(" } \n\n"))
 
-	w.Write([]byte(".arrow {\n"))
+	w.Write([]byte("table {\n"))
+	w.Write([]byte("  border-collapse: collapse;\n"))
+	w.Write([]byte("  width: 100%;\n"))
+	w.Write([]byte("}\n"))
 
+	w.Write([]byte("th, td {\n"))
+	w.Write([]byte("  text-align: left;\n"))
+	w.Write([]byte("  padding: 8px;\n"))
+	w.Write([]byte("}\n\n"))
+
+	w.Write([]byte("tr:nth-child(even) {background-color: #f2f2f2;}\n\n"))
+
+	w.Write([]byte(".arrow {\n"))
 	w.Write([]byte("  border: solid black;\n"))
 	w.Write([]byte("  border-width: 0 3px 3px 0;\n"))
 	w.Write([]byte("  display: inline-block;\n"))
