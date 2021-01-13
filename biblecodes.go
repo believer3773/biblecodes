@@ -999,6 +999,16 @@ func sendEarlyHtml_fd(w *os.File) {
 	w.Write([]byte("font-weight:bolder;\n"))
 	w.Write([]byte("}\n"))
 
+	w.Write([]byte(".block {\n"))
+	w.Write([]byte("font-size: 30px;\n"))
+	w.Write([]byte("}\n"))
+
+	/*
+		w.Write([]byte("input[type=\"submit\"], input[type=\"button\"] {\n"))
+		w.Write([]byte("  font-size: 14px;\n"))
+		w.Write([]byte("}\n"))
+	*/
+
 	w.Write([]byte("th, td {\n"))
 	w.Write([]byte("  text-align: left;\n"))
 	w.Write([]byte("  padding: 8px;\n"))
