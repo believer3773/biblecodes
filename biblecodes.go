@@ -994,6 +994,11 @@ func sendEarlyHtml_fd(w *os.File) {
 	w.Write([]byte("  width: 100%;\n"))
 	w.Write([]byte("}\n"))
 
+	w.Write([]byte("h1{\n"))
+	w.Write([]byte("font-size: 50px;\n"))
+	w.Write([]byte("font-weight:bolder;\n"))
+	w.Write([]byte("}\n"))
+
 	w.Write([]byte("th, td {\n"))
 	w.Write([]byte("  text-align: left;\n"))
 	w.Write([]byte("  padding: 8px;\n"))
