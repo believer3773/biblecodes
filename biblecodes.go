@@ -984,7 +984,7 @@ func sendEarlyHtml_fd(w *os.File) {
 	w.Write([]byte("</script>\n"))
 	w.Write([]byte("<style>\n"))
 
-	w.Write([]byte(".block {\ndisplay: block;\n width: 100%;\n border: none;\n background-color: #4CAF50;\n"))
+	w.Write([]byte(".block {\ndisplay: block;\n width: 100%;\n border: none;\n background-color: #b61924;\n"))
 	w.Write([]byte("color: white;\npadding: 14px 28px;\nfont-size: 16px;\ncursor: pointer;\ntext-align: center;\n}"))
 	w.Write([]byte("block:hover {\nbackground-color: #ddd;color: black;\n"))
 	w.Write([]byte(" } \n\n"))
