@@ -1355,17 +1355,19 @@ func main() {
 
 	/////////////////////////////////////////////////////
 
-	indexfd, err := os.OpenFile(DOCS+"/index.html", os.O_CREATE|os.O_RDWR, 0755)
-	if err != nil {
-		fmt.Println("error opening index.html")
-		return
-	}
+	/*
+		indexfd, err := os.OpenFile(DOCS+"/index.html", os.O_CREATE|os.O_RDWR, 0755)
+		if err != nil {
+			fmt.Println("error opening index.html")
+			return
+		}
 
-	indextmpl := template.Must(template.ParseFiles("index.html"))
-	//data.PageTitle = "A Survey of Biblical Numerics and Mathematical Monotheism (Bible Codes)"
-	data.PageTitle = "scripturecodes.com provides a summarized view of some recently discovered Bible codes."
-	sendEarlyHtml_fd(indexfd) //Write any early html like <head> and <style>
-	indextmpl.Execute(indexfd, data)
+		indextmpl := template.Must(template.ParseFiles("index.html"))
+		//data.PageTitle = "A Survey of Biblical Numerics and Mathematical Monotheism (Bible Codes)"
+		data.PageTitle = "scripturecodes.com provides a summarized view of some recently discovered Bible codes."
+		sendEarlyHtml_fd(indexfd) //Write any early html like <head> and <style>
+		indextmpl.Execute(indexfd, data)
+	*/
 
 	/////////////////////////////////////////////////////
 
