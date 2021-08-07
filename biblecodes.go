@@ -708,10 +708,10 @@ func doawesomemath(primes, semiprimes []int, inums importantnumbers) []AwesomeMa
 		str = fmt.Sprintf("The prime factors of 2701 are 37 and 73, in other words, 37x73 is equal to 2701.")
 		html = append(html, AwesomeMathInformation{str})
 
-		str := fmt.Sprintf("Chokmah (חכמה) is the Hebrew Greek Word for wisdom.  Adding the Hebrew ordinal values of each Hebrew character in 'חכמה' equals %d.", hom["ח"]+hom["כ"]+hom["מ"]+hom["ה"])
+		str := fmt.Sprintf("Chochma (חכמה) is the Hebrew Word for wisdom.  Adding the Hebrew ordinal values of each Hebrew character in 'חכמה' equals %d.", hm["ח"]+hm["כ"]+hm["מ"]+hm["ה"])
 		html = append(html, AwesomeMathInformation{str})
 
-		str = fmt.Sprintf("By taking each character for the Hebrew word for wisdom which is 'הםכח' and add up the numerical value for each character you get %d.", hm["ח"]+hm["כ"]+hm["מ"]+hm["ה"])
+		str = fmt.Sprintf("By taking each character for the Hebrew word for wisdom 'הםכח' and add up the ordinal value for each character you get %d.", hom["ח"]+hom["כ"]+hom["מ"]+hom["ה"])
 		html = append(html, AwesomeMathInformation{str})
 
 		str = fmt.Sprintf("37 is the 12th prime number and 73 is the 21st prime number. Note 12 and 21 are mirror images.")
@@ -977,8 +977,8 @@ func sendEarlyHtml_fd(w *os.File) {
 	w.Write([]byte("<!DOCTYPE html>\n"))
 	w.Write([]byte("<html>\n"))
 	w.Write([]byte("<head>\n"))
-	w.Write([]byte("<!-- Global site tag (gtag.js) - Google Analytics -->\n<script async src=\"https://www.googletagmanager.com/gtag/js?id=G-9BHPJN08TF\"></script>\n<script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-9BHPJN08TF'); </script>\n"))
-	w.Write([]byte("<script data-ad-client=\"ca-pub-5646233493379677\" async src=\"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js\"></script>\n"))
+	//w.Write([]byte("<!-- Global site tag (gtag.js) - Google Analytics -->\n<script async src=\"https://www.googletagmanager.com/gtag/js?id=G-9BHPJN08TF\"></script>\n<script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-9BHPJN08TF'); </script>\n"))
+	//w.Write([]byte("<script data-ad-client=\"ca-pub-5646233493379677\" async src=\"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js\"></script>\n"))
 	w.Write([]byte("<meta charset=\"utf-8\"\">\n"))
 	w.Write([]byte("<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js\">\n"))
 	w.Write([]byte("</script>\n"))
