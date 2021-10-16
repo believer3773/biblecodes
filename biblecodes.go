@@ -13,7 +13,6 @@ package main
 import (
 	"fmt"
 	"html/template"
-	//	"io/ioutil"
 	"math"
 	"math/big"
 	"net/http"
