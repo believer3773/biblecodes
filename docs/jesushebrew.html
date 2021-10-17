@@ -30,6 +30,10 @@ font-weight:bolder;
 .block {
 font-size: 30px;
 }
+td a {
+display:block;
+width:100%;
+}
 th, td {
   text-align: left;
   padding: 8px;
@@ -155,35 +159,7 @@ Next
 
 
 <script>
-
-$('#slideme').click(function(){
-       $('.hebrewtable').slideToggle('slow');
-});
-</script>
-
-
-<script type="text/javascript">
-
-function toggleTable2() {
-	var x = document.getElementById("table2");
-        if (x.style.display === "none") {
-	    x.style.display = "block";
-	} else {
-            x.style.display = "none";
-        }
-}
-</script>
-
-</body>
-</html>
-ck="window.location.href='jesusgreek.html';">
-Next
-</button>
-<br>
-
-
-<script>
-
+// Monitors the buttons for click events and slides <img> in response.
 $('#slideme').click(function(){
        $('.hebrewtable').slideToggle('slow');
 });

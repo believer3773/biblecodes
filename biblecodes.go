@@ -12,7 +12,7 @@ package main
 
 import (
 	"fmt"
-	"html/template"
+	//"html/template"
 	"math"
 	"math/big"
 	"net/http"
@@ -20,6 +20,7 @@ import (
 	"sort"
 	"strconv"
 	"strings"
+	"text/template"
 )
 
 var (
@@ -788,18 +789,12 @@ func compute_english_alphabet(s string) int {
 
 // http://reason.landmarkbiblebaptist.net/888.html
 func english_gematria_jesus() []Gematria {
-	list888 := []string{"THE TRINITY", "MESSIAH JESUS", "THE LION OF JUDAH", "MORNING STAR", "THE KING JESUS", "FINISHED CROSS",
-		"DIVINE PRESENCE", "OMNIPRESENT", "THE LORD'S TIME", "COMING TRUTH", "KING OF THE SABBATH", "BIBLICAL PROPHET",
-		"THE HOUSE OF GOD", "LAW OF LIBERTY", "SCRIPTURES", "THE PASSOVER", "LAMB OF GOD SACRIFICE", "LIVE IN CHRIST",
-		"SAVED IN JESUS", "JESUS FORGAVE", "CHRIST RECEIVED", "SPIRIT BIRTH"}
 
 	g := make([]Gematria, 0)
 
 	for _, entry := range list888 {
-		val := compute_english_gematria(entry)
-		//str = fmt.Sprintf("'%v',english gematria value is %d\n", entry, val)
-		//g = append(g, Gematria{str, val})
-		g = append(g, Gematria{Name: entry, Count: val})
+		val := compute_english_gematria(entry.str)
+		g = append(g, Gematria{Name: entry.str, Count: val, Verse: entry.verse})
 	}
 
 	return g
@@ -807,18 +802,12 @@ func english_gematria_jesus() []Gematria {
 
 // http://reason.landmarkbiblebaptist.net/888.html
 func english_gematria_666() []Gematria {
-	list666 := []string{"A SATANIC MARK", "SATAN'S SEAL", "A SATANIC PLAN", "RECEIVE A MARK", "CHOICE OF DOOM", "FOREHEAD SIGN", "THE HAND OR HEAD",
-		"EDEN TEMPTED", "PEOPLE SIN", "DEVIL'S HEIR", "HUMANITY", "SON OF SIN", "WICKED WILL", "STUBBORN", "SCORNERS", "LUSTFUL",
-		"TREACHERIES", "CORRUPT", "FLOOD OF NOAH", "COMPUTER", "TERMINALS", "BIO-IMPLANT", "LUCIFER HELL", "HELL: TWICE DEAD",
-		"HELL: A REAL PLACE", "HELL BURNS", "SET ON FIRE", "DEAL FROM HELL", "STUPID DEAL", "DAVID ALLENDER",
-	}
 
 	g := make([]Gematria, 0)
 
 	for _, entry := range list666 {
-		val := compute_english_gematria(entry)
-		//str = fmt.Sprintf("%v\n", entry, val)
-		g = append(g, Gematria{Name: entry, Count: val})
+		val := compute_english_gematria(entry.str)
+		g = append(g, Gematria{Name: entry.str, Count: val, Verse: entry.verse})
 	}
 
 	return g
@@ -872,6 +861,7 @@ type AwesomeChemistryInformation struct {
 type Gematria struct {
 	Name  string
 	Count int
+	Verse string
 }
 
 type BibleData struct {
@@ -914,6 +904,7 @@ func sendEarlyHtml(w http.ResponseWriter) {
 	w.Write([]byte("<html>\n"))
 	w.Write([]byte("<head>\n"))
 	w.Write([]byte("<meta charset=\"utf-8\"\">\n"))
+	//	w.Write([]byte("<link rel=\"stylesheet\" href=\"styles.css\">"))
 	w.Write([]byte("<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js\">\n"))
 	w.Write([]byte("</script>\n"))
 	w.Write([]byte("<style>\n"))
@@ -1000,6 +991,11 @@ func sendEarlyHtml_fd(w *os.File) {
 
 	w.Write([]byte(".block {\n"))
 	w.Write([]byte("font-size: 30px;\n"))
+	w.Write([]byte("}\n"))
+
+	w.Write([]byte("td a {\n"))
+	w.Write([]byte("display:block;\n"))
+	w.Write([]byte("width:100%;\n"))
 	w.Write([]byte("}\n"))
 
 	/*
@@ -1382,5 +1378,4 @@ func main() {
 	notestmpl.Execute(notesfd, data)
 
 	/////////////////////////////////////////////////////
-
 }
