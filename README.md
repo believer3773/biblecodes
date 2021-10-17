@@ -5,7 +5,7 @@ suffix.go  - a program for searching the bible and other texts using suffix arra
 <br>
 <br>
 Usage:<br>
-go run biblecodes.go <br> 
+go run biblecodes.go 888.go 666.go <br> 
 
 Look in docs/ folder for index.html.  Open in a browser.<br>
 
