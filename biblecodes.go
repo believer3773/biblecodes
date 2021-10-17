@@ -809,6 +809,7 @@ func english_gematria_666() []Gematria {
 	for _, entry := range list666 {
 		val := compute_english_gematria(entry.str)
 		verselist := compute_verse_list(entry.verses)
+		//fmt.Println(verselist)
 		g = append(g, Gematria{Name: entry.str, Count: val, Verse: verselist})
 	}
 
@@ -830,10 +831,32 @@ func compute_biblelookup_string(verseentry string) string {
 		return ""
 	}
 
+	hreflink := ""
+	urlverse := ""
+
 	if verseentry[0:4] == "RAW:" {
 		return verseentry[4:]
 	} else {
-		hreflink := fmt.Sprintf("%s%s%s%s%s%s", "<a href=https://www.biblegateway.com/passage/?search=", verseentry, "&version=KJV", ">", verseentry, "</a>")
+
+		if strings.Contains(verseentry, ",") != true {
+			urlverse = strings.ReplaceAll(verseentry, " ", "+")
+			hreflink = fmt.Sprintf("%s%s%s>%s</a>", "<a href=https://www.biblegateway.com/passage/?search=", urlverse, "&version=KJV", verseentry)
+		} else {
+			verselist := strings.Split(verseentry, ",")
+			if len(verselist) > 0 {
+				for _, verse := range verselist {
+					urlverse = strings.ReplaceAll(verse, " ", "+")
+					hreflink += fmt.Sprintf("%s%s%s>%s</a> ", "<a href=https://www.biblegateway.com/passage/?search=", urlverse, "&version=KJV", verse)
+				}
+
+				//fmt.Println(hreflink)
+
+				return hreflink
+			} else {
+				return verseentry
+			}
+		}
+
 		return hreflink
 	}
 }

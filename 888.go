@@ -6,7 +6,7 @@ type l8 struct {
 }
 
 var list888 []l8 = []l8{
-	{"MESSIAH JESUS", []string{"The Lord's name,JESUS,in Koine Greek totals 888"}},
+	{"MESSIAH JESUS", []string{"RAW:The Lord's name,JESUS,in Koine Greek totals 888"}},
 	{"GEMATRIA: CODE OF GOD", []string{""}},
 	{"ENGLISH GEMATRIA", []string{""}},
 	{"SIMPLE ENGLISH", []string{""}},
@@ -33,7 +33,7 @@ var list888 []l8 = []l8{
 	{"SAVED IN JESUS", []string{""}},
 	{"JESUS FORGAVE", []string{"Lk 23:34"}},
 	{"CHRIST RECEIVED", []string{""}},
-	{"SPIRIT BIRTH", []string{"Jn 3:5-8,Rev 21:6,22:17"}},
+	{"SPIRIT BIRTH", []string{"Jn 3:5-8,Rev 21:6,Rev 22:17"}},
 	{"JESUS' GOSPEL", []string{"Mark 1:1,Mark 1:14-15"}},
 	{"RIGHTEOUS GOD", []string{"Ps 7:9"}},
 	{"SAVED IN JESUS", []string{"2 Tim 1:9"}},
