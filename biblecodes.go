@@ -794,7 +794,8 @@ func english_gematria_jesus() []Gematria {
 
 	for _, entry := range list888 {
 		val := compute_english_gematria(entry.str)
-		g = append(g, Gematria{Name: entry.str, Count: val, Verse: entry.verse})
+		verselist := compute_verse_list(entry.verses)
+		g = append(g, Gematria{Name: entry.str, Count: val, Verse: verselist})
 	}
 
 	return g
@@ -807,10 +808,34 @@ func english_gematria_666() []Gematria {
 
 	for _, entry := range list666 {
 		val := compute_english_gematria(entry.str)
-		g = append(g, Gematria{Name: entry.str, Count: val, Verse: entry.verse})
+		verselist := compute_verse_list(entry.verses)
+		g = append(g, Gematria{Name: entry.str, Count: val, Verse: verselist})
 	}
 
 	return g
+}
+
+func compute_verse_list(verses []string) string {
+	verselist := ""
+
+	for _, verseentry := range verses {
+		verselist += fmt.Sprintf("%s ", compute_biblelookup_string(verseentry))
+	}
+
+	return verselist
+}
+
+func compute_biblelookup_string(verseentry string) string {
+	if len(verseentry) <= 0 {
+		return ""
+	}
+
+	if verseentry[0:4] == "RAW:" {
+		return verseentry[4:]
+	} else {
+		hreflink := fmt.Sprintf("%s%s%s%s%s%s", "<a href=https://www.biblegateway.com/passage/?search=", verseentry, "&version=KJV", ">", verseentry, "</a>")
+		return hreflink
+	}
 }
 
 //from revelation's Mark of the Beast Exposed - Revelation's Ancient Discoveries - youtube.com
