@@ -12,7 +12,6 @@ package main
 
 import (
 	"fmt"
-	//"html/template"
 	"math"
 	"math/big"
 	"net/http"
@@ -21,6 +20,7 @@ import (
 	"strconv"
 	"strings"
 	"text/template"
+	//"html/template"
 )
 
 var (
