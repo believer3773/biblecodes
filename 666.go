@@ -76,7 +76,7 @@ var list666 []l6 = []l6{
 	{"PEOPLE SIN", []string{"Rom 3:23"}},
 	{"SON OF SIN", []string{"Jn 8:44,Rom 5:12"}},
 	{"STUBBORN", []string{"1 Sam 15:23"}},
-	{"HARDENED HEART", []string{"Heb 3:8,Heb 15,Heb 4:7"}},
+	{"HARDENED HEART", []string{"Heb 3:8,Heb 3:15,Heb 4:7"}},
 	{"WICKED WILL", []string{"Jer 17:9-10"}},
 	{"BOOK OF THE DEAD", []string{"Dan 7:9-10,Rev 20:12"}},
 	{"AN ABSENCE OF GOD", []string{"Eph 2:12"}},
