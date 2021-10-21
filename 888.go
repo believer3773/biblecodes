@@ -13,7 +13,7 @@ var list888 []l8 = []l8{
 	//{"LANGUAGE MIRACLE",""},
 	{"ANTICHRIST CODE", []string{""}},
 	{"GOD'S NUMBERING", []string{""}},
-	{"THE TRINITY", []string{"Jn 5:7"}},
+	{"THE TRINITY", []string{""}},
 	{"THE LION OF JUDAH", []string{"Rev 5:5"}},
 	{"MORNING STAR", []string{"Rev 22:16"}},
 	{"THE KING JESUS", []string{""}},
