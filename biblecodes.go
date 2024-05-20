@@ -4,6 +4,7 @@
 // License: This code is released under the God public license (Gpl).
 //
 // Example of running this program:
+//
 //	go run biblecodes.go
 //
 // Jeremiah 33:3 Call to me and I will answer you and tell you great and unsearchable things you do not know.
@@ -43,7 +44,7 @@ var (
 	first37elements = make([]elements, 37)
 )
 
-//Source of this function is: https://rosettacode.org/wiki/Semiprime#Go
+// Source of this function is: https://rosettacode.org/wiki/Semiprime#Go
 func semiprime(n int) bool {
 	nf := 0
 	for i := 2; i <= n; i++ {
@@ -139,7 +140,7 @@ func init_english_gematria() {
 	english_gematria["Z"] = 156
 }
 
-//data came from: https://www.lenntech.com/periodic/mass/atomic-mass.htm
+// data came from: https://www.lenntech.com/periodic/mass/atomic-mass.htm
 func init_periodictable() {
 
 	first37elements = []elements{
@@ -183,7 +184,7 @@ func init_periodictable() {
 	}
 }
 
-//alphabet was derived from https://en.wikipedia.org/wiki/Hebrew_alphabet
+// alphabet was derived from https://en.wikipedia.org/wiki/Hebrew_alphabet
 func init_hebrewlanguage() {
 	hm["ת"] = 400
 	hm["ש"] = 300
@@ -244,7 +245,7 @@ func init_mispar_shemi() {
 	msm["ע"] = 130
 }
 
-//hebrew ordinal map (hom) https://sites.google.com/site/mathematicalmonotheism/phi-star-of-genesis-1-1
+// hebrew ordinal map (hom) https://sites.google.com/site/mathematicalmonotheism/phi-star-of-genesis-1-1
 func init_hebrewlanguage_ordinal() {
 	hom["ת"] = 22
 	hom["ש"] = 21
@@ -272,7 +273,7 @@ func init_hebrewlanguage_ordinal() {
 	hom["א"] = 1
 }
 
-//https://en.wikipedia.org/wiki/Greek_alphabet
+// https://en.wikipedia.org/wiki/Greek_alphabet
 func init_greeklanguage() {
 	gm["Α"] = 1
 	gm["α"] = 1
@@ -335,7 +336,7 @@ func init_greeklanguage() {
 	gm["ω"] = 800
 }
 
-//These two values are united through Pi. Observe that a CIRCLE with a circumference of 2368 has a diameter of 754 (Pi = The ratio between the circumference/diameter of a CIRCLE):
+// These two values are united through Pi. Observe that a CIRCLE with a circumference of 2368 has a diameter of 754 (Pi = The ratio between the circumference/diameter of a CIRCLE):
 func ProofInThePi() []AwesomeMathInformation {
 	str := ""
 	html := make([]AwesomeMathInformation, 0)
@@ -425,7 +426,7 @@ func ProofInThePi() []AwesomeMathInformation {
 
 }
 
-//This function borrowed from https://github.com/JJ/pigo/blob/master/pigo.go
+// This function borrowed from https://github.com/JJ/pigo/blob/master/pigo.go
 func Pi(ndigits int64) string {
 	if ndigits <= 7 {
 		return "3.141595"
@@ -443,7 +444,7 @@ func Pi(ndigits int64) string {
 	}
 }
 
-//This function borrowed from https://github.com/JJ/pigo/blob/master/pigo.go
+// This function borrowed from https://github.com/JJ/pigo/blob/master/pigo.go
 func arccot(x int64, unity *big.Int) *big.Int {
 	bigx := big.NewInt(x)
 	xsquared := big.NewInt(x * x)
@@ -473,7 +474,7 @@ func arccot(x int64, unity *big.Int) *big.Int {
 	return sum
 }
 
-//reverse a string using space as the separation point
+// reverse a string using space as the separation point
 func ReverseVerse(input string) []string {
 	s := strings.Split(input, " ")
 
@@ -485,7 +486,7 @@ func ReverseVerse(input string) []string {
 	return a
 }
 
-//ms = mispar shemi (full name) gematria
+// ms = mispar shemi (full name) gematria
 func compute_verse_msm(verse string, mapprovided map[string]int) int {
 	sentencesum := 0
 
@@ -686,13 +687,17 @@ func doawesomednabiomath() {
 	*/
 }
 
-//https://sites.google.com/site/mathematicalmonotheism/
+// https://sites.google.com/site/mathematicalmonotheism/
 func doawesomemath(primes, semiprimes []int, inums importantnumbers) []AwesomeMathInformation {
 	//compute prime factors of Genesis 1:1 in Hebrew
 	//First verse in Hebrew downloaded from: https://www.ccel.org/a/anonymous/hebrewot/Genesis.html
 	//296+407+395+401+86+203+913 == 2701 == 37x73
 	genesis11 := "בראשית ברא אלהים את השמים ואת הארץ" //1 In the beginning God created the heaven and the earth. KJV
 	hebrewgenesiscount := compute_verse_hebrew(genesis11, hm)
+	neronceasar := "נרון קסר"
+	neronceasarcount := compute_verse_hebrew(neronceasar, hm)
+
+	fmt.Println("neron ceasar count = ", neronceasarcount)
 
 	html := make([]AwesomeMathInformation, 0)
 	str := ""
@@ -861,7 +866,7 @@ func compute_biblelookup_string(verseentry string) string {
 	}
 }
 
-//from revelation's Mark of the Beast Exposed - Revelation's Ancient Discoveries - youtube.com
+// from revelation's Mark of the Beast Exposed - Revelation's Ancient Discoveries - youtube.com
 func roman_gematria_666() {
 	popetitle := "VICARIUS FILII DEI"
 
@@ -929,8 +934,8 @@ type BibleData struct {
 	GematriaEvil     []Gematria
 }
 
-//assumes a hash map of type map[string]int
-//returns a list of hash keys and values in sorted order
+// assumes a hash map of type map[string]int
+// returns a list of hash keys and values in sorted order
 func retrieve_hash_map(m map[string]int) ([]string, []string) {
 	keys := make([]string, 0)
 	for k, _ := range m {
@@ -1118,7 +1123,7 @@ func main() {
 	init_english_gematria()
 	init_english_alphabet()
 
-	//roman_gematria_666()
+	roman_gematria_666()
 
 	//print primes between 2 and 400 into a list for use later in the program
 	primes := sieveOfEratosthenes(400)
