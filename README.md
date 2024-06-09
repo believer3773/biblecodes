@@ -11,8 +11,3 @@ Look in docs/ folder for gematria.html.  Open in a browser.<br>
 
 <br>
 <br>
-Simple command line search engine:<br>
-	go run suffix.go bible.txt Jesus | less -R <br>
-<br>
-<br>
-<br>
