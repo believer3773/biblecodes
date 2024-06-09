@@ -523,6 +523,36 @@ func compute_verse_msm(verse string, mapprovided map[string]int) int {
 	return sentencesum
 }
 
+func compute_verse_hebrew_subtraction(verse string, mapprovided map[string]int) int64 {
+	rv := ReverseVerse(verse)
+
+	init := 0
+	var lettersub int64 = 0
+	for _, word := range rv {
+		letters := strings.Split(word, "")
+		//fmt.Println("letters:", letters)
+		for i:=len(letters)-1; i>=0;i-- {
+			letter := letters[i]
+			val, ok := mapprovided[letter]
+			if !ok {
+				fmt.Println("In Hebrew word:", strings.Join(letters, ""), "character missing from mapprovided table:'", letter, "'")
+				os.Exit(0)
+			} else {
+				if init == 0 {
+					lettersub = int64(val)
+					init = 1
+				}else{
+					lettersub -= int64(val)
+					//fmt.Println("letter is:", val, lettersub)
+				}
+			}
+		}
+	}
+
+	return lettersub
+}
+
+
 func compute_verse_hebrew(verse string, mapprovided map[string]int) int {
 	sentencesum := 0
 
@@ -694,6 +724,9 @@ func doawesomemath(primes, semiprimes []int, inums importantnumbers) []AwesomeMa
 	//296+407+395+401+86+203+913 == 2701 == 37x73
 	genesis11 := "בראשית ברא אלהים את השמים ואת הארץ" //1 In the beginning God created the heaven and the earth. KJV
 	hebrewgenesiscount := compute_verse_hebrew(genesis11, hm)
+
+	hebrewgenesissubtract := compute_verse_hebrew_subtraction(genesis11, hm)
+
 	neronceasar := "נרון קסר"
 	neronceasarcount := compute_verse_hebrew(neronceasar, hm)
 
@@ -707,6 +740,7 @@ func doawesomemath(primes, semiprimes []int, inums importantnumbers) []AwesomeMa
 
 	str = fmt.Sprintf("Genesis 1:1 in Hebrew is %v has a standard Hebrew count of characters equal to %v.", genesis11, hebrewgenesiscount)
 	html = append(html, AwesomeMathInformation{str})
+
 
 	//2701 == (37 * 73)
 	if hebrewgenesiscount == (37 * 73) {
@@ -727,6 +761,10 @@ func doawesomemath(primes, semiprimes []int, inums importantnumbers) []AwesomeMa
 			str = fmt.Sprintf("The mirror value of 2701 is 1072.  When you add (2701+1072) you get 3773.")
 			html = append(html, AwesomeMathInformation{str})
 		}
+
+
+		str = fmt.Sprintf("By subtracting the numerical value of each character in %v, in reverse, you get %v.  When you add the inverse of -2521 (-1252). -2521 + -1252 = -3773", genesis11, hebrewgenesissubtract)
+		html = append(html, AwesomeMathInformation{str})
 	}
 
 	hebrew_mispar_shemi_count := compute_verse_msm(genesis11, msm)
@@ -1122,12 +1160,11 @@ func main() {
 	init_periodictable()
 	init_english_gematria()
 	init_english_alphabet()
-
 	roman_gematria_666()
 
 	//print primes between 2 and 400 into a list for use later in the program
 	primes := sieveOfEratosthenes(400)
-	_ = primes
+	//_ = primes
 
 	//initialize semiprimes array to -1
 	semiprimes := make([]int, 500)
@@ -1431,4 +1468,6 @@ func main() {
 	notestmpl.Execute(notesfd, data)
 
 	/////////////////////////////////////////////////////
+
+	fmt.Println("program ran successfully.  Open docs/gematria.html in a web browsers")
 }
