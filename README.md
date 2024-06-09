@@ -1,8 +1,5 @@
 Summary: An exploration of some Bible codes<br>
-There are two programs contained in this directory.  They are:<br>
 biblecodes.go - a program to calculate and verify various Bible codes.<br>
-suffix.go  - a program for searching the bible and other texts using suffix arrays.<br>
-<br>
 <br>
 Usage:<br>
 go run biblecodes.go 888.go 666.go <br> 
