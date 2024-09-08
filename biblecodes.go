@@ -531,7 +531,7 @@ func compute_verse_hebrew_subtraction(verse string, mapprovided map[string]int) 
 	for _, word := range rv {
 		letters := strings.Split(word, "")
 		//fmt.Println("letters:", letters)
-		for i:=len(letters)-1; i>=0;i-- {
+		for i := len(letters) - 1; i >= 0; i-- {
 			letter := letters[i]
 			val, ok := mapprovided[letter]
 			if !ok {
@@ -541,7 +541,7 @@ func compute_verse_hebrew_subtraction(verse string, mapprovided map[string]int) 
 				if init == 0 {
 					lettersub = int64(val)
 					init = 1
-				}else{
+				} else {
 					lettersub -= int64(val)
 					//fmt.Println("letter is:", val, lettersub)
 				}
@@ -551,7 +551,6 @@ func compute_verse_hebrew_subtraction(verse string, mapprovided map[string]int) 
 
 	return lettersub
 }
-
 
 func compute_verse_hebrew(verse string, mapprovided map[string]int) int {
 	sentencesum := 0
@@ -741,7 +740,6 @@ func doawesomemath(primes, semiprimes []int, inums importantnumbers) []AwesomeMa
 	str = fmt.Sprintf("Genesis 1:1 in Hebrew is %v has a standard Hebrew count of characters equal to %v.", genesis11, hebrewgenesiscount)
 	html = append(html, AwesomeMathInformation{str})
 
-
 	//2701 == (37 * 73)
 	if hebrewgenesiscount == (37 * 73) {
 		str = fmt.Sprintf("The prime factors of 2701 are 37 and 73, in other words, 37x73 is equal to 2701.")
@@ -761,7 +759,6 @@ func doawesomemath(primes, semiprimes []int, inums importantnumbers) []AwesomeMa
 			str = fmt.Sprintf("The mirror value of 2701 is 1072.  When you add (2701+1072) you get 3773.")
 			html = append(html, AwesomeMathInformation{str})
 		}
-
 
 		str = fmt.Sprintf("By subtracting the numerical value of each character in %v, in reverse, you get %v.  When you add the inverse of -2521 (-1252). -2521 + -1252 = -3773", genesis11, hebrewgenesissubtract)
 		html = append(html, AwesomeMathInformation{str})
@@ -1412,9 +1409,9 @@ func main() {
 
 	/////////////////////////////////////////////////////
 
-	gematriafd, err := os.OpenFile(DOCS+"/gematria.html", os.O_CREATE|os.O_RDWR, 0755)
+	gematriafd, err := os.OpenFile(DOCS+"/index.html", os.O_CREATE|os.O_RDWR, 0755)
 	if err != nil {
-		fmt.Println("error opening gematria.html")
+		fmt.Println("error opening index.html")
 		return
 	}
 
@@ -1469,5 +1466,5 @@ func main() {
 
 	/////////////////////////////////////////////////////
 
-	fmt.Println("program ran successfully.  Open docs/gematria.html in a web browsers")
+	fmt.Println("program ran successfully.  Open docs/index.html in a web browsers")
 }
